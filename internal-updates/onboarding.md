@@ -20,3 +20,13 @@ eBPF, or extended Berkeley Packet Filter, is a technology in the Linux kernel th
 CNI stands for Container Network Interface. It's a specification in the Kubernetes ecosystem that defines how networking is configured for containerized workloads. Essentially, CNIs enable different networking plugins, like Cilium, to integrate with Kubernetes clusters, providing network connectivity and services to containers running on the cluster.  
 [Intro to CNI video](https://kube.academy/courses/kubernetes-in-depth/lessons/an-introduction-to-cni#:~:text=CNI%20stands%20for%20container%20network,provides%20a%20specification%20for%20this)
 
+
+**An intro to AWS:**  
+Amazon Web Services (AWS) is a comprehensive and widely used cloud computing platform offered by Amazon.com. It provides a variety of cloud services, including computing power (with services like EC2), storage (S3), databases (RDS, DynamoDB), networking (VPC), machine learning (SageMaker), analytics (Redshift), and many others. AWS allows businesses and individuals to access these services on-demand, enabling them to build and deploy applications and infrastructure without the need to invest in physical hardware. For testing and standing up out Kubernetes cluster, we are utilizing EC2 instances.  
+[AWS](https://aws.amazon.com/what-is-aws/)
+
+**EC2:**  
+An EC2 instance is a virtual server on Amazon Web Services (AWS) that users can rent and configure to run their applications. It offers flexibility, scalability, and pay-as-you-go pricing, making it a popular choice for deploying various workloads in the cloud.   
+[EC2](9https://aws.amazon.com/ec2/)  
+[AWS Pricing Calculator](https://calculator.aws/#/addService)  
+
