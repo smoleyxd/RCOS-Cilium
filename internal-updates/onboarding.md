@@ -39,3 +39,21 @@ Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service on AWS. 
 We will not be using it for Cilium due to cost, but it is important to know its functionalities.  
 [EKS](https://aws.amazon.com/eks/)  
 
+**Service Mesh:**  
+A service mesh in Kubernetes is a dedicated infrastructure layer for managing communication between microservices. It employs lightweight network proxies to handle traffic management tasks, offering features like load balancing, routing, security, and observability. It simplifies service-to-service communication, enhances reliability, and improves observability within Kubernetes environments.  
+[definition](https://avinetworks.com/glossary/kubernetes-service-mesh/)  
+
+**VPC:**  
+A VPC (Virtual Private Cloud) is a virtual network environment in the cloud that closely resembles a traditional network infrastructure. It allows users to define their own virtual network topology, including IP address ranges, subnets, route tables, and network gateways. Within a VPC, users can deploy resources such as EC2 instances, RDS databases, and Lambda functions while having control over network access and security settings. VPCs provide isolation and segmentation, enabling organizations to create private, secure environments for their cloud-based applications and services.  
+
+**Subnets (Private and Public):**  
+
+**IAM:**  
+
+**NAT:**  
+
+**Routing Tables:**  
+
+**IGW:**  
+
+**Terraform:**  
