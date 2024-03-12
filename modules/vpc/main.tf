@@ -1,23 +1,111 @@
-resource "aws_vpc" "vpc" {
+resource "aws_vpc" "main" {
   cidr_block           = var.cidr_block
-  enable_dns_support   = var.enable_dns_support
-  enable_dns_hostnames = var.enable_dns_hostnames
+  enable_dns_support   = true
+  enable_dns_hostnames = true
 
   tags = {
-    Name = var.vpc_name
+    Name = "K8s-VPC"
+  }
+}
+
+resource "aws_subnet" "public" {
+  count = length(var.public_subnet_cidrs)
+
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.public_subnet_cidrs[count.index]
+  availability_zone = element(var.availability_zones, count.index)
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "Public-Subnet-${count.index}"
   }
 }
 
 resource "aws_subnet" "private" {
-  count                   = length(var.private_subnets_cidr_blocks)
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.private_subnets_cidr_blocks[count.index]
-  availability_zone       = element(var.availability_zones, count.index)
-  map_public_ip_on_launch = false
+  count = length(var.private_subnet_cidrs)
+
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.private_subnet_cidrs[count.index]
+  availability_zone = element(var.availability_zones, count.index)
 
   tags = {
-    Name = "private-${count.index}"
+    Name = "Private-Subnet-${count.index}"
   }
 }
 
-# TODO need to heavily customize this, this is a template for now. Will need to add security groups, probably more
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "K8s-IGW"
+  }
+}
+
+# Assuming one NAT Gateway per public subnet for simplicity
+# TODO optimize this
+resource "aws_nat_gateway" "nat" {
+  count = length(var.public_subnet_cidrs)
+
+  allocation_id = aws_eip.nat[count.index].id
+  subnet_id     = aws_subnet.public[count.index].id
+
+  tags = {
+    Name = "K8s-NAT-${count.index}"
+  }
+}
+
+resource "aws_eip" "nat" {
+  count = length(var.public_subnet_cidrs)
+
+  vpc = true
+
+  tags = {
+    Name = "K8s-NAT-EIP-${count.index}"
+  }
+}
+
+# Routing table for public subnets
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "Public-Subnet-Route-Table"
+  }
+}
+
+# Associate public subnets with the public route table
+resource "aws_route_table_association" "public" {
+  count = length(aws_subnet.public)
+
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+# Routing table for private subnets
+resource "aws_route_table" "private" {
+  count = length(var.private_subnet_cidrs)
+
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat[count.index].id
+  }
+
+  tags = {
+    Name = "Private-Subnet-Route-Table-${count.index}"
+  }
+}
+
+# Associate private subnets with their respective private route tables
+resource "aws_route_table_association" "private" {
+  count = length(aws_subnet.private)
+
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private[count.index].id
+}
