@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "K8s-VPC"
+    Name = "K8s-VPC-${terraform.workspace}"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Public-Subnet-${count.index}"
+    Name = "Public-Subnet-${count.index}-${terraform.workspace}"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "private" {
   availability_zone = element(var.availability_zones, count.index)
 
   tags = {
-    Name = "Private-Subnet-${count.index}"
+    Name = "Private-Subnet-${count.index}-${terraform.workspace}"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "K8s-IGW"
+    Name = "K8s-IGW-${terraform.workspace}"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.public[count.index].id
 
   tags = {
-    Name = "K8s-NAT-${count.index}"
+    Name = "K8s-NAT-${count.index}-${terraform.workspace}"
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_eip" "nat" {
   vpc = true
 
   tags = {
-    Name = "K8s-NAT-EIP-${count.index}"
+    Name = "K8s-NAT-EIP-${count.index}-${terraform.workspace}"
   }
 }
 
@@ -74,7 +74,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "Public-Subnet-Route-Table"
+    Name = "Public-Subnet-Route-Table-${terraform.workspace}"
   }
 }
 
@@ -98,7 +98,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "Private-Subnet-Route-Table-${count.index}"
+    Name = "Private-Subnet-Route-Table-${count.index}-${terraform.workspace}"
   }
 }
 

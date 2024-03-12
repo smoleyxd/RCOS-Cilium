@@ -7,7 +7,7 @@ resource "aws_vpc" "k8s_vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
-    Name = "k8s_vpc"
+    Name = "k8s_vpc-${terraform.workspace}"
   }
 }
 
@@ -17,12 +17,12 @@ resource "aws_subnet" "k8s_subnet" {
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
   tags = {
-    Name = "k8s_subnet"
+    Name = "k8s_subnet-${terraform.workspace}"
   }
 }
 
 resource "aws_security_group" "k8s_sg" {
-  name        = "k8s_sg"
+  name        = "k8s_sg-${terraform.workspace}"
   description = "Allow Kubernetes cluster traffic"
   vpc_id      = aws_vpc.k8s_vpc.id
 
@@ -41,32 +41,32 @@ resource "aws_security_group" "k8s_sg" {
   }
 
   tags = {
-    Name = "k8s_sg"
+    Name = "k8s_sg-${terraform.workspace}"
   }
 }
 
 resource "aws_instance" "k8s_master" {
-  ami           = "ami-0c2b8ca1dad447f8a" # Example AMI, update this to the latest Ubuntu/Kubernetes AMI in your region
+  ami           = "ami-?????" # TODO Update this
   instance_type = "t2.medium"
   subnet_id     = aws_subnet.k8s_subnet.id
-  key_name      = "your-key-name" # Ensure you have this key pair created
+  key_name      = "your-key-name" # TODO Setup workspaces key pairing
   security_groups = [aws_security_group.k8s_sg.name]
 
   tags = {
-    Name = "k8s_master"
+    Name = "k8s_master-${terraform.workspace}"
   }
 }
 
 resource "aws_instance" "k8s_worker" {
   count         = 2 # Number of worker nodes
-  ami           = "ami-0c2b8ca1dad447f8a" # As above, ensure this is the correct AMI
+  ami           = "ami-?????" # As above, ensure this is the correct AMI
   instance_type = "t2.medium"
   subnet_id     = aws_subnet.k8s_subnet.id
   key_name      = "your-key-name"
   security_groups = [aws_security_group.k8s_sg.name]
 
   tags = {
-    Name = "k8s_worker-${count.index}"
+    Name = "k8s_worker-${count.index}-${terraform.workspace}"
   }
 }
 
