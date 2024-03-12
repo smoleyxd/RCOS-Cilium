@@ -45,30 +45,14 @@ resource "aws_security_group" "k8s_sg" {
   }
 }
 
-resource "aws_instance" "k8s_master" {
-  ami           = "ami-?????" # TODO Update this
-  instance_type = "t2.medium"
-  subnet_id     = aws_subnet.k8s_subnet.id
-  key_name      = "your-key-name" # TODO Setup workspaces key pairing
-  security_groups = [aws_security_group.k8s_sg.name]
-
-  tags = {
-    Name = "k8s_master-${terraform.workspace}"
-  }
+module "ec2_k8s" {
+  source             = "./modules/ec2_k8s"
+  ami_id             = "ami-?????"
+  subnet_id          = aws_subnet.k8s_subnet.id
+  key_name           = "your-key-name"
+  security_group_name= aws_security_group.k8s_sg.name
 }
 
-resource "aws_instance" "k8s_worker" {
-  count         = 2 # Number of worker nodes
-  ami           = "ami-?????" # As above, ensure this is the correct AMI
-  instance_type = "t2.medium"
-  subnet_id     = aws_subnet.k8s_subnet.id
-  key_name      = "your-key-name"
-  security_groups = [aws_security_group.k8s_sg.name]
-
-  tags = {
-    Name = "k8s_worker-${count.index}-${terraform.workspace}"
-  }
-}
 
 module "cilium" {
   source = "git::https://github.com/your-repo/terraform-helm-cilium.git?ref=v1.0.0"
