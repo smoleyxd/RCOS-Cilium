@@ -30,3 +30,12 @@ An EC2 instance is a virtual server on Amazon Web Services (AWS) that users can 
 [EC2](9https://aws.amazon.com/ec2/)  
 [AWS Pricing Calculator](https://calculator.aws/#/addService)  
 
+**What is EBS and why is it needed:**  
+EBS (Elastic Block Store) is a scalable block storage service provided by Amazon Web Services (AWS) for use with EC2 instances. It offers persistent storage volumes that can be attached to EC2 instances, providing high performance and durability for storing data. EBS volumes are independent and can be easily resized or attached/detached from EC2 instances, offering flexibility and reliability for storing data in the AWS cloud. EBS is essential for Kubernetes because it provides persistent and durable storage for stateful workloads running on Kubernetes clusters, ensuring data availability and reliability in the cloud.  
+[EBS](https://docs.aws.amazon.com/ebs/latest/userguide/what-is-ebs.html)  
+
+**EKS:**  
+Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service on AWS. It simplifies Kubernetes deployment and management, integrates with AWS services, ensures scalability and reliability, and offers built-in security features, making it ideal for running containerized workloads in the cloud.  
+We will not be using it for Cilium due to cost, but it is important to know its functionalities.  
+[EKS](https://aws.amazon.com/eks/)  
+
