@@ -73,5 +73,13 @@ An IGW (Internet Gateway) in AWS enables communication between instances in a VP
 [AWS Internet Gateway Guide](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
 **Terraform:**  
-Terraform is an open-source Infrastructure as Code (IaC) tool that allows users to define and provision infrastructure resources using a declarative configuration language. It supports multiple cloud providers and simplifies infrastructure management through automated dependency handling and a plan-apply workflow.  
+Terraform is an open-source Infrastructure as Code (IaC) tool that allows users to define and provision infrastructure resources using a declarative configuration language. It supports multiple cloud providers and simplifies infrastructure management through automated dependency handling and a plan-apply workflow. 
+
 [AWS Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+Terraform commands to run (in order):  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace new "name"  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace list  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace select "name"  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace show  
+
