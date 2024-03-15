@@ -65,6 +65,8 @@ NAT (Network Address Translation) is a technique used in computer networking to 
 [NAT Guide](https://avinetworks.com/glossary/network-address-translation/#:~:text=Network%20Address%20Translation%20(NAT)%20is,private%20network%20a%20public%20address.)
 
 **Routing Tables:**  
+Routing tables are data structures used in networking to determine where network traffic should be directed. They contain information about available network destinations and the next hop or gateway to reach them, enabling efficient routing of packets across networks.  
+[Routing Tables Guide](https://www.techtarget.com/searchnetworking/definition/routing-table#:~:text=A%20routing%20table%20is%20a,as%20routers%20and%20network%20switches.)
 
 **IGW:**  
 
