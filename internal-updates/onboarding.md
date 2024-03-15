@@ -69,5 +69,9 @@ Routing tables are data structures used in networking to determine where network
 [Routing Tables Guide](https://www.techtarget.com/searchnetworking/definition/routing-table#:~:text=A%20routing%20table%20is%20a,as%20routers%20and%20network%20switches.)
 
 **IGW:**  
+An IGW (Internet Gateway) in AWS enables communication between instances in a VPC and the internet. It serves as a gateway for outbound internet access from instances within the VPC and inbound traffic from the internet to instances in public subnets.  
+[AWS Internet Gateway Guide](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
 **Terraform:**  
+Terraform is an open-source Infrastructure as Code (IaC) tool that allows users to define and provision infrastructure resources using a declarative configuration language. It supports multiple cloud providers and simplifies infrastructure management through automated dependency handling and a plan-apply workflow.  
+[AWS Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
