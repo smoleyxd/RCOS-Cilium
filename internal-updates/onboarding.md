@@ -61,6 +61,8 @@ IAM (Identity and Access Management) is a system for securely managing user acce
 [IAM Guide](https://www.techtarget.com/searchsecurity/definition/identity-access-management-IAM-system)
 
 **NAT:**  
+NAT (Network Address Translation) is a technique used in computer networking to translate IP addresses between different networks. It conserves IP addresses, enhances security by hiding internal IP addresses, and facilitates communication between devices with different address schemes.  
+[NAT Guide](https://avinetworks.com/glossary/network-address-translation/#:~:text=Network%20Address%20Translation%20(NAT)%20is,private%20network%20a%20public%20address.)
 
 **Routing Tables:**  
 
