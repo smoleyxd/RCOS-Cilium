@@ -47,7 +47,8 @@ A service mesh in Kubernetes is a dedicated infrastructure layer for managing co
 A VPC (Virtual Private Cloud) is a virtual network environment in the cloud that closely resembles a traditional network infrastructure. It allows users to define their own virtual network topology, including IP address ranges, subnets, route tables, and network gateways. Within a VPC, users can deploy resources such as EC2 instances, RDS databases, and Lambda functions while having control over network access and security settings. VPCs provide isolation and segmentation, enabling organizations to create private, secure environments for their cloud-based applications and services.  
 
 **Subnets (Private and Public):**  
-Subnets are subdivisions of a network that enable better organization and management of network resources. Within a Virtual Private Cloud (VPC) environment, subnets play a crucial role in defining the boundaries and characteristics of different segments of the network.
+Subnets are subdivisions of a network that enable better organization and management of network resources. Within a Virtual Private Cloud (VPC) environment, subnets play a crucial role in defining the boundaries and characteristics of different segments of the network.  
+[explanation](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html)
 
 **Private** subnets are designated for hosting internal resources that do not require direct access from the internet. These might include backend servers, databases, or other components that need to communicate with each other within the VPC. Instances in private subnets typically do not have public IP addresses and rely on network address translation (NAT) gateways or instances to access the internet indirectly if necessary. This setup enhances security by limiting direct exposure to external threats.
 
@@ -56,6 +57,8 @@ On the other hand, **public** subnets are intended for hosting resources that ne
 The distinction between private and public subnets lies primarily in their connectivity to the internet. Private subnets prioritize internal communication within the VPC and restrict direct internet access to enhance security. In contrast, public subnets allow resources to communicate with the internet, enabling external access to services hosted within the VPC. Properly configuring subnets within a VPC ensures that network resources are appropriately isolated and accessible based on their intended use cases and security requirements.
 
 **IAM:**  
+IAM (Identity and Access Management) is a system for securely managing user access to resources in cloud platforms like AWS. It enables defining user identities, specifying permissions for resource access, implementing multi-factor authentication, and monitoring user activity for security and compliance purposes.  
+[IAM Guide](https://www.techtarget.com/searchsecurity/definition/identity-access-management-IAM-system)
 
 **NAT:**  
 
