@@ -39,3 +39,47 @@ Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service on AWS. 
 We will not be using it for Cilium due to cost, but it is important to know its functionalities.  
 [EKS](https://aws.amazon.com/eks/)  
 
+**Service Mesh:**  
+A service mesh in Kubernetes is a dedicated infrastructure layer for managing communication between microservices. It employs lightweight network proxies to handle traffic management tasks, offering features like load balancing, routing, security, and observability. It simplifies service-to-service communication, enhances reliability, and improves observability within Kubernetes environments.  
+[definition](https://avinetworks.com/glossary/kubernetes-service-mesh/)  
+
+**VPC:**  
+A VPC (Virtual Private Cloud) is a virtual network environment in the cloud that closely resembles a traditional network infrastructure. It allows users to define their own virtual network topology, including IP address ranges, subnets, route tables, and network gateways. Within a VPC, users can deploy resources such as EC2 instances, RDS databases, and Lambda functions while having control over network access and security settings. VPCs provide isolation and segmentation, enabling organizations to create private, secure environments for their cloud-based applications and services.  
+
+**Subnets (Private and Public):**  
+Subnets are subdivisions of a network that enable better organization and management of network resources. Within a Virtual Private Cloud (VPC) environment, subnets play a crucial role in defining the boundaries and characteristics of different segments of the network.  
+[explanation](https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html)
+
+**Private** subnets are designated for hosting internal resources that do not require direct access from the internet. These might include backend servers, databases, or other components that need to communicate with each other within the VPC. Instances in private subnets typically do not have public IP addresses and rely on network address translation (NAT) gateways or instances to access the internet indirectly if necessary. This setup enhances security by limiting direct exposure to external threats.
+
+On the other hand, **public** subnets are intended for hosting resources that need to be accessible from the internet, such as web servers, load balancers, or API gateways. Instances in public subnets can have public IP addresses and are directly reachable from the internet. This facilitates communication with external clients or users accessing the application or service hosted within the VPC.
+
+The distinction between private and public subnets lies primarily in their connectivity to the internet. Private subnets prioritize internal communication within the VPC and restrict direct internet access to enhance security. In contrast, public subnets allow resources to communicate with the internet, enabling external access to services hosted within the VPC. Properly configuring subnets within a VPC ensures that network resources are appropriately isolated and accessible based on their intended use cases and security requirements.
+
+**IAM:**  
+IAM (Identity and Access Management) is a system for securely managing user access to resources in cloud platforms like AWS. It enables defining user identities, specifying permissions for resource access, implementing multi-factor authentication, and monitoring user activity for security and compliance purposes.  
+[IAM Guide](https://www.techtarget.com/searchsecurity/definition/identity-access-management-IAM-system)
+
+**NAT:**  
+NAT (Network Address Translation) is a technique used in computer networking to translate IP addresses between different networks. It conserves IP addresses, enhances security by hiding internal IP addresses, and facilitates communication between devices with different address schemes.  
+[NAT Guide](https://avinetworks.com/glossary/network-address-translation/#:~:text=Network%20Address%20Translation%20(NAT)%20is,private%20network%20a%20public%20address.)
+
+**Routing Tables:**  
+Routing tables are data structures used in networking to determine where network traffic should be directed. They contain information about available network destinations and the next hop or gateway to reach them, enabling efficient routing of packets across networks.  
+[Routing Tables Guide](https://www.techtarget.com/searchnetworking/definition/routing-table#:~:text=A%20routing%20table%20is%20a,as%20routers%20and%20network%20switches.)
+
+**IGW:**  
+An IGW (Internet Gateway) in AWS enables communication between instances in a VPC and the internet. It serves as a gateway for outbound internet access from instances within the VPC and inbound traffic from the internet to instances in public subnets.  
+[AWS Internet Gateway Guide](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
+
+**Terraform:**  
+Terraform is an open-source Infrastructure as Code (IaC) tool that allows users to define and provision infrastructure resources using a declarative configuration language. It supports multiple cloud providers and simplifies infrastructure management through automated dependency handling and a plan-apply workflow. 
+
+[AWS Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+Terraform commands to run (in order):  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace new "name"  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace list  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace select "name"  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace show  
+
