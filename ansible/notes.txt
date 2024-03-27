@@ -1,0 +1,6 @@
+- Kubernetes installation
+    - Install docker, kubelet, kubeadm, kubectl on EC2 instances
+    - Configure master & join worker nodes to form cluster
+- Cilium installation
+- Cloudwatch Agent setup
+- Kubernetes / System configurations required, if any, for metrics (needed for test suite probably)

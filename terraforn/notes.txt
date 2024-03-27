@@ -1,0 +1,6 @@
+- AWS VPC, Subnets, Internet Gateway, NAT Gateway to host the cluster
+- EC2 instances for master & worker nodes
+- Security Groups to controll access
+- IAM Roles & Policies to grant permissions for CWL
+- CW Log Groups for organizing logs
+- S3 buckets for storing Terraform state files and any other artifacts
