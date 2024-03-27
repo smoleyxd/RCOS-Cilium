@@ -1,30 +1,34 @@
+variable "instance_count" {
+  description = "Number of instances to launch."
+  type        = number
+}
+
 variable "ami_id" {
-  description = "The AMI ID for the instances."
+  description = "The ID of the AMI to use for the instances."
+  type        = string
 }
 
-variable "master_instance_type" {
-  description = "Instance type for the master node."
-  default     = "t2.medium"
-}
-
-variable "worker_instance_type" {
-  description = "Instance type for the worker nodes."
-  default     = "t2.medium"
+variable "instance_type" {
+  description = "The instance type of the Kubernetes nodes."
+  type        = string
 }
 
 variable "subnet_id" {
-  description = "The ID of the subnet where instances will be created."
+  description = "The ID of the subnet to launch the instances in."
+  type        = string
 }
 
 variable "key_name" {
   description = "The key name to use for the instance."
+  type        = string
 }
 
-variable "security_group_name" {
-  description = "The name of the security group to attach to the instances."
+variable "security_group_id" {
+  description = "The ID of the security group to associate with the instances."
+  type        = string
 }
 
-variable "worker_count" {
-  description = "The number of worker instances to create."
-  default     = 2
+variable "cluster_name" {
+  description = "The name of the Kubernetes cluster. Used for tagging."
+  type        = string
 }

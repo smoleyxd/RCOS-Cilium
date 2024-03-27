@@ -1,4 +1,4 @@
-variable "cidr_block" {
+variable "vpc_cidr" {
   description = "The CIDR block for the VPC."
   type        = string
 }
@@ -14,6 +14,11 @@ variable "private_subnet_cidrs" {
 }
 
 variable "availability_zones" {
-  description = "A list of availability zones in the region."
+  description = "A list of availability zones in which to create subnets."
   type        = list(string)
+}
+
+variable "cluster_name" {
+  description = "The name of the Kubernetes cluster. Used for tagging."
+  type        = string
 }

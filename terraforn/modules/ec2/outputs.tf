@@ -1,9 +1,9 @@
-output "master_instance_id" {
-  value       = aws_instance.k8s_master.id
-  description = "The ID of the Kubernetes master instance."
+output "instance_ids" {
+  value       = aws_instance.k8s_node.*.id
+  description = "The IDs of the EC2 instances."
 }
 
-output "worker_instance_ids" {
-  value       = aws_instance.k8s_worker.*.id
-  description = "The IDs of the Kubernetes worker instances."
+output "instance_public_ips" {
+  value       = aws_instance.k8s_node.*.public_ip
+  description = "The public IPs of the EC2 instances."
 }
