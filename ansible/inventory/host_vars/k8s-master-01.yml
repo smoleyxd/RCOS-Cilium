@@ -1,0 +1,6 @@
+# inventory/host_vars/k8s-master-01.yml
+hostname: k8s-master-01
+special_roles:
+  - api-server
+  - scheduler
+api_server_advertise_address: "?????" # TODO Set this

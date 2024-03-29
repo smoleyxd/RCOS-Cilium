@@ -1,0 +1,6 @@
+# inventory/group_vars/k8s_workers.yml
+kubernetes_version: "1.21.0"
+docker_version: "20.10"
+worker_node_labels:
+  - worker
+  - compute

@@ -1,0 +1,3 @@
+# inventory/group_vars/all.yml
+ansible_user: admin
+base_path: /opt/project
