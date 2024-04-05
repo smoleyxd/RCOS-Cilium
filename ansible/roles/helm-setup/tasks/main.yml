@@ -1,0 +1,11 @@
+# roles/helm_setup/tasks/main.yml
+- name: Download Helm installation script
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    dest: "/tmp/get_helm.sh"
+    mode: '0755'
+
+- name: Install Helm
+  ansible.builtin.shell: "/tmp/get_helm.sh"
+  args:
+    creates: "/usr/local/bin/helm"
