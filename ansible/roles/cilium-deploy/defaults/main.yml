@@ -1,0 +1,3 @@
+# defaults/main.yml
+cilium_version: "1.9.5"
+hubble_enabled: true

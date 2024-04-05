@@ -1,4 +1,0 @@
-# inventory/group_vars/monitoring.yml
-prometheus_version: "2.26.0"
-grafana_version: "7.5.4"
-monitoring_path: "{{ base_path }}/monitoring"

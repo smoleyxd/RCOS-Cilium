@@ -1,0 +1,14 @@
+# tasks/main.yml
+- name: Check if Cilium is already installed
+  ansible.builtin.shell: kubectl get namespace cilium | grep -c 'cilium'
+  register: cilium_namespace
+  ignore_errors: true
+
+- name: Deploy Cilium with Helm
+  ansible.builtin.shell: |
+    helm upgrade --install cilium cilium/cilium --version {{ cilium_version }}
+    --namespace kube-system
+    --set hubble.relay.enabled={{ hubble_enabled }}
+    --set hubble.ui.enabled={{ hubble_enabled }}
+    --set global.hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,http}"
+  when: cilium_namespace.stdout == "0"

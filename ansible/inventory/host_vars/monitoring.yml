@@ -1,6 +1,0 @@
-# inventory/host_vars/monitoring.yml
-hostname: monitoring
-grafana_admin_password: "?????" # TODO Set this
-prometheus_config_path: "/etc/prometheus/prometheus.yml"
-
-# TODO Setup prometheus configs via ansible
