@@ -1,4 +1,0 @@
-- pub sub that generates multicast traffic?
-- run on worker nodes simultaneously?
-- deploy as containers directly within cluster
-    - package into docker container then deploy it to cluster as pod
