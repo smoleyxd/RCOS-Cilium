@@ -1,4 +1,5 @@
 *Recommended to use Linux or WSL*  
+*Please read onboarding.md before using this document*  
 
 Follow steps to install Terraform  
 1. 
