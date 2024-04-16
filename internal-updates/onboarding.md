@@ -83,3 +83,6 @@ Terraform commands to run (in order):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace select "name"  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terraform workspace show  
 
+**Ansible:**  
+Ansible is an open-source automation tool used for configuration management, application deployment, and task automation. It allows you to manage multiple servers from a single control node, making it easier to deploy changes and manage infrastructure efficiently. Ansible uses YAML syntax for its configuration files and operates over SSH, making it agentless and simple to set up and use.  
+[Ansible](https://www.ansible.com/)  
