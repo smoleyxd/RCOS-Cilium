@@ -13,3 +13,8 @@ Follow steps to install Terraform
 8. Verify that you can connect to your Kubernetes cluster by running: `kubectl get nodes`  
 9. Additional Details about the cluster: `kubectl cluster-info`
 
+Expected Result (multi-node):  
+![image](image2.png)  
+
+
+
