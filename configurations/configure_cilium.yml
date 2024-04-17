@@ -1,0 +1,34 @@
+---
+- name: Add Cilium Helm Repository and Install Cilium
+  hosts: localhost
+  tasks:
+    - name: Install dependencies
+      become: yes
+      pip:
+        name:
+          - helm
+          - PyQt5
+
+    - name: Ensure Helm repository directory exists
+      ansible.builtin.file:
+        path: $HOME/.helm/repository
+        state: directory
+
+    - name: Ensure repositories.yaml exists
+      ansible.builtin.file:
+        path: $HOME/.helm/repository/repositories.yaml
+        state: touch
+
+    - name: Configure Helm repository
+      ansible.builtin.lineinfile:
+        path: $HOME/.helm/repository/repositories.yaml
+        line: "- name: cilium\n  url: https://helm.cilium.io/"
+
+    - name: Install Cilium
+      ansible.builtin.shell: "/Users/sambegin/opt/anaconda3/bin/helm install cilium cilium/cilium --version 1.15.4 \
+                                  --namespace kube-system \
+                                  --set prometheus.enabled=true \
+                                  --set operator.prometheus.enabled=true \
+                                  --set hubble.enabled=true \
+                                  --set hubble.metrics.enableOpenMetrics=true \
+                                  --set hubble.metrics.enabled='{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction}'"
