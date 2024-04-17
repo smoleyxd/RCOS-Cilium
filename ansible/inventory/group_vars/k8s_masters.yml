@@ -1,3 +1,0 @@
-# inventory/group_vars/k8s_masters.yml
-kubernetes_version: "1.21.0"
-master_node_label: master

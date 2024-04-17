@@ -1,6 +1,0 @@
-hubble:
-  listenAddress: ":4244"
-  relay:
-    enabled: true
-  ui:
-    enabled: true

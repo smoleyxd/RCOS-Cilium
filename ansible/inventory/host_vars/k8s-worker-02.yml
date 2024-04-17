@@ -1,4 +1,0 @@
-# inventory/host_vars/dev-k8s-worker-02.yml
-hostname: k8s-worker-02
-
-# TODO Configuration settings
