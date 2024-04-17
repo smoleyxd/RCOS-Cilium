@@ -6,19 +6,11 @@ provider "helm" {
   }
 }
 
-# data "aws_eks_cluster" "cluster" {
-#   name = module.eks.cluster_id
-# }
-
-# data "aws_eks_cluster_auth" "cluster" {
-#   name = module.eks.cluster_id
-# }
-
 resource "helm_release" "cilium" {
   name       = "cilium"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
-  version    = "1.16.0"
+  version    = "1.15.4"
 
   namespace = "kube-system"
 
