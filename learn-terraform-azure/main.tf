@@ -9,18 +9,7 @@ terraform {
 
   required_version = ">= 1.1.0"
 }
-variable "CLIENT_SECRET"{
-    type = string
-}
-variable "CLIENT_ID"{
-    type = string
-}
-variable "TENANT_ID"{
-    type = string
-}
-variable "SUBSCRIPTION_ID"{
-    type = string
-}
+
 provider "azurerm" {
     client_id = var.CLIENT_ID
     client_secret = var.CLIENT_SECRET
