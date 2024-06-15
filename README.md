@@ -1,7 +1,7 @@
 This branch is for the migration of the terraform from AWS to Azure.
 Unused or unecessary terraform will also be removed.
 Any old terraform from when we used AWS will be on the "old" folder.
-
+Current work will be on the "learn-terraform-azure" folder until further notice
 # Notes
 
 You will need a .tfvars file from me in order to run the program.

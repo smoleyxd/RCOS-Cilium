@@ -1,22 +1,20 @@
-# Configure the Azure provider
-
-
 data "azurerm_resource_group" "rg" {
-  name     = "RCOS-Cilium_group"
+    name = "RCOS-Cilium_group"
+    location = "eastus"
 }
 
 resource "azurerm_virtual_network" "vnet"{
-    name = "testVnet"
+    name = "test-vnet"
     address_space = ["10.0.0.0/16"]
-    location = "eastus"
+    location = data.azurerm_resource_group.rg.location
         resource_group_name = data.azurerm_resource_group.rg.name
 }
 
 resource "azurerm_kubernetes_cluster" "default" {
-    name = "test-aks"
+    name = "test-cilium-aks"
     location = data.azurerm_resource_group.rg.location
     resource_group_name = data.azurerm_resource_group.rg.name
-    dns_prefix = "test-k8s"
+    dns_prefix = "test-cilum-k8s"
     kubernetes_version = "1.29.4"
     default_node_pool{
         name = "default"
@@ -29,7 +27,11 @@ resource "azurerm_kubernetes_cluster" "default" {
         client_secret = var.CLIENT_SECRET
     }
     role_based_access_control_enabled = true
-    tags = {
-        environment = "Demo"
+    identity{
+        type = "SystemAssigned"
+    }
+    network_profile {
+        network_plugin = "azure"
+        ebpf_data_plane = "cilium"
     }
 }
