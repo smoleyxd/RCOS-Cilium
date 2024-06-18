@@ -14,3 +14,8 @@ variable "SUBSCRIPTION_ID"{
     type = string
     description = "subscription id for the rcos-cilium_group resource group"
 }
+variable "RESOURCE_GROUP_LOCATION"{
+    type = string
+    description = "location for the rcos-cilium resource group"
+    #For some reason we can't add a new 
+}
