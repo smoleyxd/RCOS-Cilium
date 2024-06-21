@@ -1,0 +1,52 @@
+name: "Terraform Deployment"
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  terraform-deploy:
+    name: "Terraform Deployment"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./
+      
+      # outputs:
+      #   tfplanExit: ${{ steps.tfplan.outputs.exitcode }}
+
+    steps:
+
+      # Checkout to Github Actions Runner
+      - uses: actions/checkout@v4
+
+      # Install the lastest version of Terrarform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+
+      - name: Terraform Innit
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+      
+      - name: Terraform Plan
+        uses: hashicorp/setup-terraform@v3
+        with:
+          tf_actions_subcommand: 'plan'
+          args: '-var-file=variables.tf'        
+
+      # - name: Terraform Apply
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     tf_actions_subcommand: 'apply'
+      #     args: '-var-file=variables.tf'
+
+
+
+      
+
