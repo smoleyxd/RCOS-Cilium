@@ -35,15 +35,13 @@ resource "azurerm_kubernetes_cluster" "default" {
         vm_size = "Standard_A2_v2"
         os_disk_size_gb = 30
         vnet_subnet_id = azurerm_subnet.subnet.id
-        pod_subnet_id = azurerm_subnet.podsubnet.id
     }
     service_principal{
         client_id = var.CLIENT_ID
         client_secret = var.CLIENT_SECRET
     }
     role_based_access_control_enabled = true
-    network_profile {
-        network_plugin = "azure"
-        ebpf_data_plane = "cilium"
-    }
+     network_profile {
+         network_plugin = "none"
+     }
 }
