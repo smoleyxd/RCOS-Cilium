@@ -3,6 +3,11 @@ name: "Terraform Deployment"
 on: 
   workflow_dispatch:
 
+permissions:
+  security-events: write
+  contents: read
+  actions: read
+
 jobs:
   terraform-deploy:
     name: "Terraform Deployment"
@@ -39,6 +44,20 @@ jobs:
         with:
           tf_actions_subcommand: 'plan'
           args: '-var-file=variables.tf'        
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Security Check
+        uses: bridgecrewio/checkov-action@master
+        with: 
+          framework: terraform
+
+      # - name: Upload Security Results
+      #   if: success() || failure()
+      #   uses: github/codeq1-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: results.sarif
 
       # - name: Terraform Apply
       #   uses: hashicorp/setup-terraform@v3
