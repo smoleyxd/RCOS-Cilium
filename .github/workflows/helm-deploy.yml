@@ -1,0 +1,46 @@
+name: "Helm Deployment"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  helm-deploy:
+    name: "Helm Deployment"
+    runs-on: ubuntu-lastest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./
+    
+    steps:
+      
+      # Checkout to Github actinos runner
+      - uses: actions/checkout@v4
+
+      # Install lastest version of Helm
+      - name: "Install Helm"
+        uses: azure/setup-helm@v4.2.0 
+        with:
+          version: latest
+    
+      # Echo Helm Version Installed
+      - name: Helm Version
+        run: |
+            echo HELM VERSION:\n $(helm version)
+    
+      # Echo Helm env
+      - name: Helm env
+        run: |
+            echo HELM ENV:\n $(helm env)
+
+      # Add cilium repo to Helm and obtain charts
+      - name: Helm Cilium
+        run: |
+            helm repo add cilium https://helm.cilium.io/
+            helm repo update
+            mkdir tmp
+            helm pull cilium/cilium -d tmp --version 1.15.6
+            echo "Chart: cilium-1.15.6.tgz" >> $GITHUB_OUTPUT
+
+    

@@ -1,0 +1,22 @@
+name: "Ansible Deployment"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ansible-deploy:
+    name: "Ansible Deployment"
+    runs-on: ubuntu-lastest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./
+
+    steps:
+      
+      # Checkout to Github actions runner
+      - uses: actions/checkout@v4
+
+      # Install the latest version of ansible
+      
