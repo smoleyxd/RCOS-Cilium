@@ -17,6 +17,37 @@ jobs:
       
       # Checkout to Github actions runner
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       # Install the latest version of ansible
-      
+      - name: Install Ansible
+        run: |
+            sudo apt update
+            sudo apt install software-properties-common
+            sudo add-apt-repository --yes --update ppa:ansible/ansible
+            sudo apt install ansible
+            
+      - name: SSH Setup
+        shell: bash
+        run: |
+
+            mkdir -p /home/runner/.ssh/
+            touch /home/runner/.ssh/id_rsa
+            echo -e ${{secrets.SSH_KEY}} > /home/runner/.ssh/id_rsa
+            chmod 700 /home/runner/.ssh/id_rsa
+            ssh-keyscan -t rsa, dsa, ecdsa, ed25519 ${{secrets.SSH_KEY}} > /home/runner/.ssh/known_hosts
+
+      # - name: Run Ansible Playbook
+      #   shell: bash
+      #   run: |
+      #       service ssh status
+      #       ansible-playbook ENTER PLAYBOOK PATH
+
+      # - name: Run Ansible Playbook
+      #   uses: dawidd6/actions-ansible-playbook@v2
+      #   with:
+      #     playbook: ENTER PLAYBOOK PATH
+      #     directory: ./
+
+        
