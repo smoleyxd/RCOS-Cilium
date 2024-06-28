@@ -1,6 +1,12 @@
 name: "Helm Deployment"
 
 on:
+  push:
+    branches: 
+      - azure-migration
+  pull_request:
+    branches:
+      - azure-migration
   workflow_dispatch:
 
 jobs:
