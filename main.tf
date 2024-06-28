@@ -1,6 +1,9 @@
+# main.tf
+
 data "azurerm_resource_group" "rg" {
     name = "RCOS-Cilium_group"
 }
+
 
 resource "azurerm_virtual_network" "vnet"{
     name = "test-vnet"
