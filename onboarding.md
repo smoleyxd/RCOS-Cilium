@@ -129,3 +129,36 @@ in command prompt:
         - after running this command, your specified AKS cluster becomes the current context in your local Kubernetes configuration,
           which means all subsequent 'kubectl' commands will interact with this AKS by default until changed
     5) verify the AKS cluster: kubectl get nodes
+
+
+<u><strong>Using Terraform</strong></u>
+**Define Kubernetes control plane:**
+resource "kubernetes_cluster" "example_cluster" {
+  name = "example-cluster"
+  location = "eastus"
+
+  control_plane_configuration {
+    api_server_authorized_ip_ranges = ["10.0.0.0/16"]
+    #more control plane configuration options...
+  }
+}
+   - Resource type: "kubernetes_cluster"; specifies Terraform will manage a Kubernetes cluster
+   - Resource name: "example_cluster"; local name for this specific instance of the resource
+   - defines name and location attributes
+   - control plane configuration: specifies IP ranges authorized to access the kubernetes API server
+
+**Define worker nodes:**
+resource "kubernetes_node_pool" "example_nodes" {
+  cluster_id = kubernetes_cluster.example_cluster.id
+  name       = "worker-pool"
+
+  node_count = 3
+  vm_size = "Standard_DS2_v2"
+  enable_autoscaling = true
+
+  autoscaling {
+    min_count = 3
+    max_count = 5
+  }
+}
+   - Resource type: "kubernetes_node_pool" specifies Terraform will be managing a node pool within a Kubernetes cluster
