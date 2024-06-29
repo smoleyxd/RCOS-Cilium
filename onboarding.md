@@ -3,8 +3,36 @@
 <u><strong>Networking Basics</strong></u>
 
 1. **OSI Model and TCP/IP**
-   OSI Model:
-
+   OSI (Open Systems Interconnection) Model:
+      - 7 layers which work together to transmit data from one person to another across the globe
+      - theoretical as opposed to being directly implemented in its entirety in real-world networking hardware or software; introduces core principals
+        that specific protocols and technologies are based on
+      - reference framework for explaining the process of transmitting data between computers
+        
+      7 layers:
+       1) Physical layer
+           Lowest layer. Responsible for the actual physical connection between the devices. Contains information in the form of bits.
+           Responsible for transmitting individual bits from one node to the next. Converts recieved signals into 0s and 1s and sends them to the
+           Data Link layer.
+       **2) data link layer**
+         - In Kubernetes, this layer involves Ethernet frames within a signle subnet
+         - Kubernetes assumes nodes within the same cluster can communicate directly at this layer
+       **3) network layer**
+         - In Kubernetes, primary layer for pod-to-pod communication across nodes
+         - IP Addressing: Pods and nodes are assigned IP addresses within defined subnets
+         - Routing mechanisms ensure traffic between services and pods is directed correctly across the cluster
+            - Cilium manages routing decisions with eBPF
+       **4) transport layer**
+         - In Kubernetes, primary layer for Kubernetes services and network policies such as TCP
+         - Service Ports: services are associated with points at this layer, allowing communication to specific applications or
+           services running inside pods within the cluster
+         - Port Mapping: Kubernetes employs an abstraction layer that maps external requests to pods running within the cluster
+                         When external traffic is directed to a Kubernetes service, the service forwards requests to the proper
+                         pod based on the port mappings.
+       5) session layer
+       6) presentation layer
+       7) application layer
+   
    TCP (Transmission Control Protocol)/IP (Internet Protocol) stack/suite
     - IP obtains address where data is sent (IP address); TCP ensures accurate data delivery once IP address has been found
     - IP sorts, TCP sends/receives
