@@ -1,4 +1,4 @@
-#Documentation file to organize Heather's learning and give new members easy access to core onboarding information; I've already written a bulk of info elsewhere, just need to transfer it
+#Preliminary documentation file to organize Heather's learning and give new members easy access to core onboarding information; will revisit for formatting + I still have a bulk of info elsewhere that I'm still learning how to work with before committing
 
 <u><strong>Networking Basics</strong></u>
 
