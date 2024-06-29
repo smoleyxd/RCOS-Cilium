@@ -10,28 +10,28 @@
       - reference framework for explaining the process of transmitting data between computers
         
       7 layers:
-       1) Physical layer
+       1\. Physical layer
            Lowest layer. Responsible for the actual physical connection between the devices. Contains information in the form of bits.
            Responsible for transmitting individual bits from one node to the next. Converts recieved signals into 0s and 1s and sends them to the
            Data Link layer.
-       2) **data link layer**
+       2\. **data link layer**
          - In Kubernetes, this layer involves Ethernet frames within a signle subnet
          - Kubernetes assumes nodes within the same cluster can communicate directly at this layer
-       3) **network layer**
+       3\. **network layer**
          - In Kubernetes, primary layer for pod-to-pod communication across nodes
          - IP Addressing: Pods and nodes are assigned IP addresses within defined subnets
          - Routing mechanisms ensure traffic between services and pods is directed correctly across the cluster
             - Cilium manages routing decisions with eBPF
-       4) **transport layer**
+       4\. **transport layer**
          - In Kubernetes, primary layer for Kubernetes services and network policies such as TCP
          - Service Ports: services are associated with points at this layer, allowing communication to specific applications or
            services running inside pods within the cluster
          - Port Mapping: Kubernetes employs an abstraction layer that maps external requests to pods running within the cluster
                          When external traffic is directed to a Kubernetes service, the service forwards requests to the proper
                          pod based on the port mappings.
-       5) session layer
-       6) presentation layer
-       7) application layer
+       5\. session layer
+       6\. presentation layer
+       7\. application layer
    
    TCP (Transmission Control Protocol)/IP (Internet Protocol) stack/suite
     - IP obtains address where data is sent (IP address); TCP ensures accurate data delivery once IP address has been found
@@ -60,6 +60,20 @@
    IP addresses contain two parts:
     1) Network ID: specifies a device's location in the network
     2) Host ID: labels a specific device in that location
+       
+   IPv4 and IPv6 are the two main types of IP addresses 
+   IPv4:
+   - has 4 strings of numbers consisting of 8 bits each, represented by 0 to 255 in numerical forms, separated by decimals
+   - decimals section off these 4 numbers so they are each a section of 8 bits, together making 32 bites -> 4 bytes
+   - this allows for 4.3 billion unique IP addresses; however, cannot provide enough addresses for growing internet demands, so becoming less used in comparison to IPv6
+
+   IPv6:
+   - uses 8 groups of 4 hexadecimal characters
+   - the first three of these 8 groups are part of the routing prefix
+   - the fourth group is the subnet IP
+   - the last four groups are the Interface ID
+   - this allows for exponentially more IP addresses than IPv4
+
 
    <u><strong> Subnetting:</strong></u>
    Subnet Mask: 32-bit number that divides host's IP address into network ID and host ID; helps determine the network area subnets
@@ -76,5 +90,10 @@
                  network admins can isolate the engineers to their own subnet, reducing the effect of their file transfers on other users
    - each subnet has a unique identifier within the larger network ID
 
-4. **Routing and Switching**
+3. **Routing and Switching**
+   Internal Cluster Routing:
+      - Pod-to-Pod communication: Kubernetes uses overlay networks for pod-to-pod communicatoin across nodes
+      - each pod recieves an IP address
+   External Connectivity:
+      - Kubernetes clusters connect to external networks through ingress and engress routes
 5. **Domain Name System (DNS)**
