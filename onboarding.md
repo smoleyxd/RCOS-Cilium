@@ -14,15 +14,15 @@
            Lowest layer. Responsible for the actual physical connection between the devices. Contains information in the form of bits.
            Responsible for transmitting individual bits from one node to the next. Converts recieved signals into 0s and 1s and sends them to the
            Data Link layer.
-       **2) data link layer**
+       2) **data link layer**
          - In Kubernetes, this layer involves Ethernet frames within a signle subnet
          - Kubernetes assumes nodes within the same cluster can communicate directly at this layer
-       **3) network layer**
+       3) **network layer**
          - In Kubernetes, primary layer for pod-to-pod communication across nodes
          - IP Addressing: Pods and nodes are assigned IP addresses within defined subnets
          - Routing mechanisms ensure traffic between services and pods is directed correctly across the cluster
             - Cilium manages routing decisions with eBPF
-       **4) transport layer**
+       4) **transport layer**
          - In Kubernetes, primary layer for Kubernetes services and network policies such as TCP
          - Service Ports: services are associated with points at this layer, allowing communication to specific applications or
            services running inside pods within the cluster
