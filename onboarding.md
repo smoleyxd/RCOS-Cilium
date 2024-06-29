@@ -97,3 +97,35 @@
    External Connectivity:
       - Kubernetes clusters connect to external networks through ingress and engress routes
 5. **Domain Name System (DNS)**
+
+
+<u><strong>Deploying First Kubernetes Cluster with AKS</strong></u>
+in command prompt: 
+    1) log in to Azure: az login, select account, select subscription- StudentCloud did not enable the permissions required to create a kluster, so 
+       use Azure Student service instead
+    2) create the resource group: az group create --name test-Cilium-rg --location eastus
+        "test" is environment, "Cilium" is project name, "rg" represents resource group.
+        This creates the resource group "test-Cilium-rg" in the "eastus" region
+    3) create the AKS Cluster: az aks create --resource-group test-Cilium-rg --name test-Cilium-aks --node-count 1 --enable-addons monitoring --
+       generate-ssh-keys
+        - az: command-line tool (CLI) for Azure
+        - aks: specifies that we are interacting with Azure Kubernetes Service(AKS)
+        - create: instructs the CLI to create a new AKS Cluster
+        - --resource-group test-Cilium-rg: specifies name of the Azure resource group where AKS cluster will be created
+            *resource groups are containers that Azure resources*
+        - --name test-Cilium-aks: specifies the name for the AKS cluster that will be created
+        - --node-count 1: specifies the initial number of nodes in the AKS cluster
+            *Nodes: virtual machines that run Kubernetes and your applications*
+        - --enable-addons monitoring: enables monitoring add-ons for the AKS cluster
+        - --generate-ssh-keys: generates SSH keys for secure access to the cluster nodes
+    4) configure kubectl to connect to your AKS Cluster: az aks get-credentials --resource-group test-Cilium-rg --name test-Cilium-aks
+        - get-credentials: retrieves and merges the credentials for the specified AKS cluster into the local Kubernetes configuration file 
+                           (~/.kube/config)
+            - Kubernetes Configuration (~/.kube/config): a YAML file located in the home directory (~) of the user on a local machine
+            - This file is usually created when you install kubectl or initialize a Kubernetes cluster context using commands like "az aks get-
+              credentials"
+            - retrieves necessary credentials (like certificates and tokens) from Azure for the specified AKS cluster (--name test-Cilium-aks) 
+              located in the specified resource group (--resource-group <test-Cilium-rg>)
+        - after running this command, your specified AKS cluster becomes the current context in your local Kubernetes configuration,
+          which means all subsequent 'kubectl' commands will interact with this AKS by default until changed
+    5) verify the AKS cluster: kubectl get nodes
