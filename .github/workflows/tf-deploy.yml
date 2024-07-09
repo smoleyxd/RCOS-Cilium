@@ -59,11 +59,12 @@ jobs:
         with: 
           framework: terraform
 
-      # - name: Upload Security Results
-      #   if: success() || failure()
-      #   uses: github/codeq1-action/upload-sarif@v3
-      #   with:
-      #     sarif_file: results.sarif
+      - name: Upload Security Results
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
+          category: Terraform
 
       # - name: Terraform Apply
       #   uses: hashicorp/setup-terraform@v3
