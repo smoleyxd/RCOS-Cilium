@@ -1,3 +1,5 @@
+# helm.tf
+
 provider "helm" {
   kubernetes {
     host                   = azurerm_kubernetes_cluster.default.kube_config[0].host
@@ -21,11 +23,6 @@ resource "helm_release" "cilium" {
 
   set {
     name  = "k8sServiceHost"
-    value = azurerm_kubernetes_cluster.default.kube_config[0].host
-  }
-
-  set {
-    name  = "k8sServicePort"
     value = azurerm_kubernetes_cluster.default.kube_config[0].host
   }
 }

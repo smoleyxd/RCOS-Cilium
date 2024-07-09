@@ -24,3 +24,4 @@ variable "RESOURCE_GROUP_LOCATION" {
   type        = string
   description = "Location for the RCOS-Cilium resource group"
 }
+
