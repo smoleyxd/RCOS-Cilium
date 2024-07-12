@@ -5,22 +5,6 @@ data "azurerm_resource_group" "rg" {
 }
 
 data "azurerm_subscription" "current"{}
-/*
-resource "azurerm_user_assigned_identity" "monitor"{
-    location = var.RESOURCE_GROUP_LOCATION
-    name = "monitor"
-    resource_group_name = data.azurerm_resource_group.rg.name
-}
-data "azurerm_role_definition" "contributor"{
-    name = "Contributor"
-}
-
-resource "azurerm_role_assignment" "assignment"{
-    scope = data.azurerm_subscription.current.id
-    role_definition_id = "${data.azurerm_subscription.current.id}${data.azurerm_role_definition.contributor.id}"
-    principal_id = azurerm_kubernetes_cluster.default.identity[0].principal_id
-}
-*/
 resource "azurerm_virtual_network" "vnet" {
   name                = "test-vnet"
   address_space       = ["10.0.0.0/8"]
@@ -58,13 +42,6 @@ resource "azurerm_kubernetes_cluster" "default" {
     os_disk_size_gb = 30
     vnet_subnet_id  = azurerm_subnet.subnet.id
   }
-
-    /*
-  service_principal {
-    client_id     = var.CLIENT_ID
-    client_secret = var.CLIENT_SECRET
-  }
-    */
 
   role_based_access_control_enabled = true
 
