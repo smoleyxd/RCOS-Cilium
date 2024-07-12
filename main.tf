@@ -4,6 +4,12 @@ data "azurerm_resource_group" "rg" {
   name = "RCOS-Cilium_group"
 }
 
+resource "azurerm_user_assigned_identity" "monitor"{
+    location = var.RESOURCE_GROUP_LOCATION
+    name = "monitor"
+    resource_group_name = data.azurerm_resource_group.rg.name
+}
+
 resource "azurerm_virtual_network" "vnet" {
   name                = "test-vnet"
   address_space       = ["10.0.0.0/8"]
@@ -30,12 +36,12 @@ resource "azurerm_kubernetes_cluster" "default" {
   location            = var.RESOURCE_GROUP_LOCATION
   resource_group_name = data.azurerm_resource_group.rg.name
   dns_prefix          = "test-cilium-k8s"
-  kubernetes_version  = "1.30.2"
+  kubernetes_version  = "1.30"
 
   default_node_pool {
     name            = "default"
-    node_count      = 3
-    vm_size         = "Standard_A2_v2"
+    node_count      = 2
+    vm_size         = "Standard_B2s"
     os_disk_size_gb = 30
     vnet_subnet_id  = azurerm_subnet.subnet.id
   }
