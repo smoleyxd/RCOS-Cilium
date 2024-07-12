@@ -30,14 +30,14 @@ resource "azurerm_kubernetes_cluster" "default" {
   location            = var.RESOURCE_GROUP_LOCATION
   resource_group_name = data.azurerm_resource_group.rg.name
   dns_prefix          = "test-cilium-k8s"
-  kubernetes_version  = "1.29.4"
+  kubernetes_version  = "1.30.2"
 
   default_node_pool {
-    name           = "default"
-    node_count     = 2
-    vm_size        = "Standard_A2_v2"
+    name            = "default"
+    node_count      = 3
+    vm_size         = "Standard_A2_v2"
     os_disk_size_gb = 30
-    vnet_subnet_id = azurerm_subnet.subnet.id
+    vnet_subnet_id  = azurerm_subnet.subnet.id
   }
 
   service_principal {

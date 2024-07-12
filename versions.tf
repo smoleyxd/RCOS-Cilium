@@ -1,6 +1,12 @@
 # versions.tf
 
 terraform {
+  cloud {
+    organization = "RCOS-Cilium"
+    workspaces {
+      name = "RCOS-Cilium"
+    }
+  }
   required_providers {
     azapi = {
       source  = "azure/azapi"
@@ -24,5 +30,5 @@ provider "azurerm" {
   client_secret   = var.CLIENT_SECRET
   subscription_id = var.SUBSCRIPTION_ID
   tenant_id       = var.TENANT_ID
-  features        {}
+  features {}
 }
