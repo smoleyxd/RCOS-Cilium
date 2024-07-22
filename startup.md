@@ -16,4 +16,5 @@ Follow steps to install Terraform
 ### IMPORTANT
 `terraform destroy`  
 Run this when you are finished with the cluster to avoid errant costs
-
+In order to view the grafan output, you will have to give yourself the "grafana admin" role.
+Do this with "az role assignment create --assignee "your-id" --role "Grafana Admin" --scope "/subscriptions/subscription-id/resourceGroups/your-resource-group"
