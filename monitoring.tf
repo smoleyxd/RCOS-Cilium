@@ -18,10 +18,6 @@ resource "azurerm_dashboard_grafana" "graf" {
     resource_id = azurerm_monitor_workspace.prom.id
   }
 }
-# Output the grafana url for usability
-output "grafana_url" {
-  value = azurerm_dashboard_grafana.graf.endpoint
-}
 
 resource "azurerm_monitor_data_collection_endpoint" "dce" { #TODO: Move to outputs.tf
   name                = "MSProm-${azurerm_monitor_workspace.prom.location}-${azurerm_kubernetes_cluster.default.name}"
