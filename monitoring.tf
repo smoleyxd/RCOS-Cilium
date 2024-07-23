@@ -18,9 +18,11 @@ resource "azurerm_dashboard_grafana" "graf" {
     resource_id = azurerm_monitor_workspace.prom.id
   }
 }
-# Output the grafana url for usability
-output "grafana_url" {
-  value = azurerm_dashboard_grafana.graf.endpoint
+
+resource "azurerm_role_assignment" "grafana" {
+  scope                = data.azurerm_resource_group.rg.id
+  role_definition_name = "Monitoring Reader"
+  principal_id         = azurerm_dashboard_grafana.graf.identity[0].principal_id
 }
 
 resource "azurerm_monitor_data_collection_endpoint" "dce" { #TODO: Move to outputs.tf
