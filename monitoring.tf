@@ -1,8 +1,8 @@
 
-resource "azurerm_monitor_workspace" "prom"{
-    name = "prom-test"
-    resource_group_name = data.azurerm_resource_group.rg.name
-    location = var.RESOURCE_GROUP_LOCATION
+resource "azurerm_monitor_workspace" "prom" {
+  name                = "prom-test"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.RESOURCE_GROUP_LOCATION
 }
 resource "azurerm_dashboard_grafana" "graf" {
   name                              = "graf-test1"
@@ -23,11 +23,11 @@ output "grafana_url" {
   value = azurerm_dashboard_grafana.graf.endpoint
 }
 
-resource "azurerm_monitor_data_collection_endpoint" "dce"{ #TODO: Move to outputs.tf
-    name = "MSProm-${azurerm_monitor_workspace.prom.location}-${azurerm_kubernetes_cluster.default.name}"
-    resource_group_name = data.azurerm_resource_group.rg.name
-    location = var.RESOURCE_GROUP_LOCATION
-    kind = "Linux"
+resource "azurerm_monitor_data_collection_endpoint" "dce" { #TODO: Move to outputs.tf
+  name                = "MSProm-${azurerm_monitor_workspace.prom.location}-${azurerm_kubernetes_cluster.default.name}"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.RESOURCE_GROUP_LOCATION
+  kind                = "Linux"
 }
 
 resource "azurerm_monitor_data_collection_rule" "dcr" { #TODO: Move to outputs.tf or elsewhere
@@ -76,7 +76,7 @@ resource "azurerm_monitor_alert_prometheus_rule_group" "node_recording_rules_rul
   description         = "Node Recording Rules Rule Group"
   rule_group_enabled  = true
   interval            = "PT1M"
-  scopes              = [azurerm_monitor_workspace.prom.id,azurerm_kubernetes_cluster.default.id]
+  scopes              = [azurerm_monitor_workspace.prom.id, azurerm_kubernetes_cluster.default.id]
 
   rule {
     enabled    = true

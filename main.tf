@@ -4,7 +4,7 @@ data "azurerm_resource_group" "rg" {
   name = "RCOS-Cilium_group"
 }
 
-data "azurerm_subscription" "current"{}
+data "azurerm_subscription" "current" {}
 resource "azurerm_virtual_network" "vnet" {
   name                = "test-vnet"
   address_space       = ["10.0.0.0/8"]
@@ -32,7 +32,7 @@ resource "azurerm_kubernetes_cluster" "default" {
   resource_group_name = data.azurerm_resource_group.rg.name
   dns_prefix          = "test-cilium-k8s"
   kubernetes_version  = "1.30"
-  identity{
+  identity {
     type = "SystemAssigned"
   }
   default_node_pool {
@@ -48,9 +48,9 @@ resource "azurerm_kubernetes_cluster" "default" {
   network_profile {
     network_plugin = "azure"
   }
-  monitor_metrics{
+  monitor_metrics {
     annotations_allowed = null
-    labels_allowed = null
+    labels_allowed      = null
   }
 }
 
