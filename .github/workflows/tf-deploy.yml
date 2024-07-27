@@ -79,10 +79,12 @@ jobs:
       #   run: terraform destroy
 
       # Security Check of all Terraform Files
-      - name: Terraform Security Check
+      - name: Terraform Checkov Security Check
         uses: bridgecrewio/checkov-action@master
         with: 
           framework: terraform
+          output_format: sarif
+          output_file_path: results.sarif
 
       # Upload Security Results to 
       - name: Upload Security Results
