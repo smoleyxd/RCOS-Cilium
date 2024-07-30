@@ -19,3 +19,16 @@ variable "RESOURCE_GROUP_LOCATION" {
   description = "location for the rcos-cilium resource group"
   #For some reason we can't add a new 
 }
+variable "GITHUB_REPOSITORY" {
+  type        = string
+  description = "github repository of the rcos-cilium github repository"
+}
+variable "GITHUB_ORG" {
+  type        = string
+  description = "github organization of the rcos-cilium github repository"
+}
+variable "GITHUB_TOKEN" {
+  type        = string
+  default     = ""
+  description = "github token of the rcos-cilium github repository"
+}
