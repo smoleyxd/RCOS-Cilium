@@ -18,3 +18,6 @@ Follow steps to install Terraform
 Run this when you are finished with the cluster to avoid errant costs
 In order to view the grafan output, you will have to give yourself the "grafana admin" role.
 Do this with "az role assignment create --assignee "your-id" --role "Grafana Admin" --scope "/subscriptions/subscription-id/resourceGroups/your-resource-group"
+You may also need to give your cli the rbac admin role if it does not have the ability to do already
+Do this with "az role assignment create --assignee "cli-id" --role "Role Based Access Control Administrator" --scope "/subscriptions/subscription-id/resouceGroups/your-resource-group"
+
