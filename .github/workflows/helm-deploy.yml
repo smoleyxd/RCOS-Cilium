@@ -9,6 +9,10 @@ on:
       - azure-migration
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   helm-deploy:
     name: "Helm Deployment"
@@ -21,32 +25,50 @@ jobs:
     
     steps:
       
-      # Checkout to Github actinos runner
-      - uses: actions/checkout@v4
+      # Checkout to Github actions runner
+      - name: Action Runner Checkout
+        uses: actions/checkout@v4
 
       # Install lastest version of Helm
       - name: "Install Helm"
         uses: azure/setup-helm@v4.2.0 
         with:
           version: latest
-    
-      # Echo Helm Version Installed
-      - name: Helm Version
-        run: |
-            echo HELM VERSION:\n $(helm version)
-    
-      # Echo Helm env
-      - name: Helm env
-        run: |
-            echo HELM ENV:\n $(helm env)
 
-      # Add cilium repo to Helm and obtain charts
-      - name: Helm Cilium
-        run: |
-            helm repo add cilium https://helm.cilium.io/
-            helm repo update
-            mkdir tmp
-            helm pull cilium/cilium -d tmp --version 1.15.6
-            echo "Chart: cilium-1.15.6.tgz" >> $GITHUB_OUTPUT
+      # Install the lastest version of Terrarform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }} 
+
+      # Initialize the Working Environment
+      - name: Terraform Init
+        # uses: hashicorp/setup-terraform@v3
+        run: terraform init
+
+      # Validate all Terraform Files
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Plan the install Cilium via helm.tf
+      - name: Terraform Plan
+        uses: hashicorp/setup-terraform@v3
+        continue-on-error: true
+        with:
+          tf_actions_subcommand: 'plan'
+          args: '-target=helm.tf -out=helmtf'   
+
+      # Install Cilium via helm.tf
+      - name: Terraform Apply
+        uses: hashicorp/setup-terraform@v3
+        with:
+          tf_actions_subcommand: 'apply'
+          args: 'helmtf'
+
+      # Destroy the Environment
+      - name: Terraform Destroy
+        run: terraform destroy
+
 
     

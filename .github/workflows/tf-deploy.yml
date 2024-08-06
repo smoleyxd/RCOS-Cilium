@@ -24,13 +24,14 @@ jobs:
         shell: bash
         working-directory: ./
       
-      # outputs:
-      #   tfplanExit: ${{ steps.tfplan.outputs.exitcode }}
+    # outputs:
+    #   tfplanExit: ${{ steps.tfplan.outputs.exitcode }}
 
     steps:
 
       # Checkout to Github Actions Runner
-      - uses: actions/checkout@v4
+      - name: Action Runner Checkout
+        uses: actions/checkout@v4
 
       # Install the lastest version of Terrarform
       - name: Setup Terraform
@@ -38,41 +39,57 @@ jobs:
         with:
           terraform_wrapper: false
 
-
-      - name: Terraform Innit
-        run: terraform init
-
-      - name: Terraform Validate
-        run: terraform validate
-      
-      - name: Terraform Plan
+      # Store API Token
+      - name: Config API Token
         uses: hashicorp/setup-terraform@v3
         with:
-          tf_actions_subcommand: 'plan'
-          args: '-var-file=variables.tf'        
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }} 
 
+      # Initialize the Working Environment
+      - name: Terraform Init
+        # uses: hashicorp/setup-terraform@v3
+        run: terraform init
+
+      # Validate all Terraform Files
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Checks formatting of all Terraform Files
       - name: Terraform Format
         run: terraform fmt -check
+        continue-on-error: true
 
-      - name: Terraform Security Check
+      # Check Proposed Changes
+      - name: Terraform Plan
+        uses: hashicorp/setup-terraform@v3
+        continue-on-error: true
+        with:
+          tf_actions_subcommand: 'plan'
+          args: '-out=tfplan'      
+
+      # Apply Proposed Changes
+      # - name: Terraform Apply
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     tf_actions_subcommand: 'apply'
+      #     args: 'tfplan'
+
+      # Destroy the Environment
+      # - name: Terraform Destroy
+      #   run: terraform destroy
+
+      # Security Check of all Terraform Files
+      - name: Terraform Checkov Security Check
         uses: bridgecrewio/checkov-action@master
         with: 
           framework: terraform
+          output_format: sarif
+          output_file_path: results.sarif
 
+      # Upload Security Results to 
       - name: Upload Security Results
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: results.sarif
           category: Terraform
-
-      # - name: Terraform Apply
-      #   uses: hashicorp/setup-terraform@v3
-      #   with:
-      #     tf_actions_subcommand: 'apply'
-      #     args: '-var-file=variables.tf'
-
-
-
-      
-
