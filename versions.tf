@@ -20,6 +20,10 @@ terraform {
       source  = "hashicorp/helm"
       version = "~> 2.14.0"
     }
+    grafana = {
+      source  = "grafana/grafana"
+      version = "~> 1.23.0"
+    }
   }
 
   required_version = ">= 1.1.0"
@@ -31,4 +35,9 @@ provider "azurerm" {
   subscription_id = var.SUBSCRIPTION_ID
   tenant_id       = var.TENANT_ID
   features {}
+}
+
+provider "grafana" {
+  url  = azurerm_dashboard_grafana.graf.endpoint
+  auth = var.GRAFANA_API_KEY
 }
