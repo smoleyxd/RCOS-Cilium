@@ -1,4 +1,12 @@
+# versions.tf
+
 terraform {
+  cloud {
+    organization = "RCOS-Cilium"
+    workspaces {
+      name = "RCOS-Cilium"
+    }
+  }
   required_providers {
     azapi = {
       source  = "azure/azapi"
@@ -28,6 +36,10 @@ terraform {
       source  = "hashicorp/tls"
       version = ">= 4.0"
     }
+    grafana = {
+      source  = "grafana/grafana"
+      version = "~> 1.23.0"
+    }
   }
 
   required_version = ">= 1.7.0"
@@ -39,4 +51,9 @@ provider "azurerm" {
   subscription_id = var.SUBSCRIPTION_ID
   tenant_id       = var.TENANT_ID
   features {}
+}
+
+provider "grafana" {
+  url  = azurerm_dashboard_grafana.graf.endpoint
+  auth = var.GRAFANA_API_KEY
 }

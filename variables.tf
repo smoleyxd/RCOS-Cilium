@@ -1,23 +1,33 @@
+# variables.tf
+
 variable "CLIENT_SECRET" {
   type        = string
-  description = "Password for the azure cli user"
+  description = "Password for the Azure CLI user"
 }
+
 variable "CLIENT_ID" {
   type        = string
-  description = "appId for the azure cli user"
+  description = "appId for the Azure CLI user"
 }
+
 variable "TENANT_ID" {
   type        = string
-  description = "tenant id for the rcos-cilium_group resource group"
+  description = "Tenant ID for the RCOS-Cilium_group resource group"
 }
+
 variable "SUBSCRIPTION_ID" {
   type        = string
-  description = "subscription id for the rcos-cilium_group resource group"
+  description = "Subscription ID for the RCOS-Cilium_group resource group"
 }
+
 variable "RESOURCE_GROUP_LOCATION" {
   type        = string
-  description = "location for the rcos-cilium resource group"
-  #For some reason we can't add a new 
+  description = "Location for the RCOS-Cilium resource group"
+}
+
+variable "GRAFANA_API_KEY" {
+  type = string
+  description = "API key for loki/grafana"
 }
 variable "GITHUB_REPOSITORY" {
   type        = string
