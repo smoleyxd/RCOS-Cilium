@@ -20,6 +20,9 @@ module "eks" {
 }
 
 #outputs used to expose certain values after infrastructure is deployed
+
+#provides kubeconfig file content; used to configure kubectl which is the command-line tool for 
+#interacting wiht kubernetes clusters
 output "kubeconfig" {
   value = module.eks.kubeconfig
 }
