@@ -77,6 +77,54 @@ These blocks create subnets within the VNet. test-subnet is for general use, and
   }
 This block sets up an Azure Kubernetes Service (AKS) cluster with Cilium as the networking plugin. It includes settings for the node pool, service principal, and network profile
 
+## 2. variables.tf
+### purpose:
+The 'variables.tf' file defines the variables used in the Terraform configuration. Variables allow you to customize and parameterize the deployment
+### components
+- **Client Secret**
+  ```hcl
+  variable "CLIENT_SECRET" {
+  type        = string
+  description = "Password for the azure cli user"
+  }
+ Defines the password for the Azure CLI user
+- **Client ID**
+  ```hcl
+  variable "CLIENT_ID" {
+  type        = string
+  description = "appId for the azure cli user"
+  }
+ Specifies the application ID for the Azure CLI user
+ - **Tenant ID**
+   ```hcl
+   variable "TENANT_ID" {
+   type        = string
+   description = "tenant id for the rcos-cilium_group resource group"
+   }
+ The tenant ID for the resource group
+ - **Subscription ID**
+   ```hcl
+   variable "SUBSCRIPTION_ID" {
+   type        = string
+   description = "subscription id for the rcos-cilium_group resource group"
+   }
+  The Azure subscription ID for the resource group
+ - **Resource Group Location**
+   ```hcl
+   variable "RESOURCE_GROUP_LOCATION" {
+   type        = string
+   description = "location for the rcos-cilium resource group"
+   }
+  Specifies the location where the resource group and resources will be deployed
+
+
+
+   
+
+
+
+
+
 
  
 
