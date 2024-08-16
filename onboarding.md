@@ -116,6 +116,42 @@ The 'variables.tf' file defines the variables used in the Terraform configuratio
    description = "location for the rcos-cilium resource group"
    }
   Specifies the location where the resource group and resources will be deployed
+## 3. versions.tf
+### Purpose:
+The 'versions.tf' file specifies the Terraform provider versions and Terraform version requirements
+
+### Components:
+- **Provider Requirements**
+  ```hcl
+  terraform {
+  required_providers {
+    azapi = {
+      source  = "azure/azapi"
+      version = "~> 1.5"
+    }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.67.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.14.0"
+    }
+  }
+
+  required_version = ">= 1.1.0"
+  }
+This block defines the providers required for the configuration (azapi, azurerm, and helm) and their versions, as well as the minimum Terraform version required
+- **Provider Congifuration**
+  ```hcl
+  provider "azurerm" {
+  client_id       = var.CLIENT_ID
+  client_secret   = var.CLIENT_SECRET
+  subscription_id = var.SUBSCRIPTION_ID
+  tenant_id       = var.TENANT_ID
+  features {}
+  }
+Configures the Azure provider with credentials and subscription details
 
 
 
