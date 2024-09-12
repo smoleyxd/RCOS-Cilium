@@ -1,4 +1,14 @@
  #Documentation file to organize Heather's learning and give new members easy access to core onboarding information
+## Introduction 
+ Cilium is a tool that helps manage how data moves between different applications inside a Kubernetes cluster. Kubernetes can be thought of as a traffic controller for applications, making sure apps can run smoothly on a group of nodes (called a cluster) and that they can communicate when needed. It automates the deployment, scaling, and management of containerized applications. Containerized applications are applications packaged in containers, which can be conceptualized as boxes that holds everything an application needs to run, such as code, libraries, and dependencies. They ensure the app can run consistently on any machine/no matter where it's deployed (computer, server, cloud); thus, they are like isolated environments that allow apps to run independently from each other and of their platform. A kubernetes cluster works to to run and manage these containers and distributes the workload across multiple nodes.
+ 
+ Nodes are the machines that run the applications. They can be physical machines like computers, virtual machines that run on cloud platforms such as AWS, Google Cloud, or Microsoft Azure, or cloud instances like EC2 instances on AWS or VM instances on Google Cloud, which act like virtual machines but are specifically managed by cloud platforms.
+ 
+ Cilium helps manage and secure this communication between applications inside Kubernetes, controling and monitoring the traffic between apps to make sure the correct messages get through. Using Cilium with Kubernetes enhances:
+ - Security: Cilium helps create rules about which applications can talk to each other, making the system more secure
+ - Visibility: Cilium provides a clear view of what’s happening inside the cluster—what apps are talking, how much traffic is moving, and if anything unusual is occurring 
+ - Scalability: Cilium helps Kubernetes handle lots of applications without slowing down communication
+
 
 ## Deploying Kubernetes and Cilium with Terraform on Azure
 
