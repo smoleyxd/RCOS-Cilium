@@ -1,8 +1,7 @@
- #Documentation file to organize Heather's learning and give new members easy access to core onboarding information
 ## Introduction 
  Cilium is a tool that helps manage how data moves between different applications inside a Kubernetes cluster. Kubernetes can be thought of as a traffic controller for applications, making sure apps can run smoothly on a group of nodes (called a cluster) and that they can communicate when needed. It automates the deployment, scaling, and management of containerized applications. Containerized applications are applications packaged in containers, which can be conceptualized as boxes that hold everything an application needs to run such as code, libraries, and dependencies. They ensure the app can run consistently on any machine/no matter where it's deployed (computer, server, cloud); thus, they are like isolated environments that allow apps to run independently from each other and of their platform. A kubernetes cluster works to to run and manage these containers and distributes the workload across multiple nodes.
  
- Nodes are the machines that run the applications. They can be physical machines like computers, virtual machines that run on cloud platforms such as AWS, Google Cloud, or Microsoft Azure, or cloud instances like EC2 instances on AWS or VM instances on Google Cloud, which act like virtual machines but are specifically managed by cloud platforms.
+ Nodes are the machines that run the applications. They can be physical machines like computers, virtual machines that run on cloud platforms such as AWS, Google Cloud, or Microsoft **Azure**, or cloud instances like EC2 instances on AWS or VM instances on Google Cloud, which act like virtual machines but are specifically managed by cloud platforms.
  
  Cilium helps manage and secure this communication between applications inside Kubernetes, controling and monitoring the traffic between apps to make sure the correct messages get through. Using Cilium with Kubernetes enhances:
  - Security: Cilium helps create rules about which applications can talk to each other, making the system more secure
@@ -13,11 +12,11 @@ Terraform is the tool we will be using to handle the creation of the Kubernetes 
 
 ## Terraform
 ### What is Terraform?
-Terraform is a powerful tool that automates infrastructure. This means it allows us to define and manage our infrastructure (like servers, networks, and storage) using code, specifically in simple configuration files written in a language called HCL (HashiCorp Configuration Language). This process is called Infrastructure as Code (IaC), where you write code to describe the infrastructure and Terraform builds it for you. For our project, Terraform will be responsible for creating the Azure Kubernetes Service (AKS) cluster where Cilium will be deployed.
+Terraform is a powerful tool that automates infrastructure. This means it allows us to define and manage our infrastructure (like servers, networks, and storage) using code, specifically in simple configuration files written in a language called HCL (HashiCorp Configuration Language). This process is called Infrastructure as Code (IaC), where you write code to describe the infrastructure and Terraform builds it for you. Our provider for this project is **Azure Kubernetes Service (AKS);** thus, Terraform will be responsible for creating the AKS cluster where Cilium will be deployed.
 
 ### How does Terraform work?
 - **Configuration files:** Terraform uses configuration files written in HashiCorp Configuration Language (HCL) to define what infrastructure you need. These files are like blueprints that describe everything Terraform needs to build your environment.
-- **Providers:** Terraform interacts with different providers (like AWS, Azure, or Google Cloud) to create resources. In this project, we use the Azure (AKS) provider to set up our Kubernetes cluster
+- **Providers:** Terraform interacts with different providers (like AWS, **Azure**, or Google Cloud) to create resources. In this project, we use the Azure (AKS) provider to set up our Kubernetes cluster
 - **Commands:** You use simple commands in the terminal to:
   - **Initialize** Terraform (command: terraform init) – This prepares Terraform to work in your project, downloading any necessary plugins or dependencies
   - **Plan** the changes (command: terraform plan) – This shows you what changes Terraform will make based on your configuration files
