@@ -1,6 +1,6 @@
  #Documentation file to organize Heather's learning and give new members easy access to core onboarding information
 ## Introduction 
- Cilium is a tool that helps manage how data moves between different applications inside a Kubernetes cluster. Kubernetes can be thought of as a traffic controller for applications, making sure apps can run smoothly on a group of nodes (called a cluster) and that they can communicate when needed. It automates the deployment, scaling, and management of containerized applications. Containerized applications are applications packaged in containers, which can be conceptualized as boxes that holds everything an application needs to run, such as code, libraries, and dependencies. They ensure the app can run consistently on any machine/no matter where it's deployed (computer, server, cloud); thus, they are like isolated environments that allow apps to run independently from each other and of their platform. A kubernetes cluster works to to run and manage these containers and distributes the workload across multiple nodes.
+ Cilium is a tool that helps manage how data moves between different applications inside a Kubernetes cluster. Kubernetes can be thought of as a traffic controller for applications, making sure apps can run smoothly on a group of nodes (called a cluster) and that they can communicate when needed. It automates the deployment, scaling, and management of containerized applications. Containerized applications are applications packaged in containers, which can be conceptualized as boxes that hold everything an application needs to run such as code, libraries, and dependencies. They ensure the app can run consistently on any machine/no matter where it's deployed (computer, server, cloud); thus, they are like isolated environments that allow apps to run independently from each other and of their platform. A kubernetes cluster works to to run and manage these containers and distributes the workload across multiple nodes.
  
  Nodes are the machines that run the applications. They can be physical machines like computers, virtual machines that run on cloud platforms such as AWS, Google Cloud, or Microsoft Azure, or cloud instances like EC2 instances on AWS or VM instances on Google Cloud, which act like virtual machines but are specifically managed by cloud platforms.
  
@@ -9,6 +9,20 @@
  - Visibility: Cilium provides a clear view of what’s happening inside the cluster—what apps are talking, how much traffic is moving, and if anything unusual is occurring 
  - Scalability: Cilium helps Kubernetes handle lots of applications without slowing down communication
 
+Terraform is the tool we will be using to handle the creation of the Kubernetes clusters that Cilium depends on for managing networking and security.
+
+## Terraform
+### What is Terraform?
+Terraform is a powerful tool that automates infrastructure. This means it allows us to define and manage our infrastructure (like servers, networks, and storage) using code, specifically in simple configuration files written in a language called HCL (HashiCorp Configuration Language). This process is called Infrastructure as Code (IaC), where you write code to describe the infrastructure and Terraform builds it for you. For our project, Terraform will be responsible for creating the Azure Kubernetes Service (AKS) cluster where Cilium will be deployed.
+
+### How does Terraform work?
+- **Configuration files:** Terraform uses configuration files written in HashiCorp Configuration Language (HCL) to define what infrastructure you need. These files are like blueprints that describe everything Terraform needs to build your environment.
+- **Providers:** Terraform interacts with different providers (like AWS, Azure, or Google Cloud) to create resources. In this project, we use the Azure (AKS) provider to set up our Kubernetes cluster
+- **Commands:** You use simple commands in the terminal to:
+  - **Initialize** Terraform (command: terraform init) – This prepares Terraform to work in your project, downloading any necessary plugins or dependencies
+  - **Plan** the changes (command: terraform plan) – This shows you what changes Terraform will make based on your configuration files
+  - **Apply** the changes (command: terraform apply) – This actually creates or updates the infrastructure as defined in your files. Terraform reads your code and interacts with the cloud provider to create or modify the resources
+  - **Destroy** the infrastructure (command: terraform destroy) – This removes all the resources Terraform created, so you don’t leave any resources running unnecessarily. **Very important:** You MUST run "terraform destroy" every time you are done using the cluster you just created to avoid leaving resources running and incurring unnecessary costs 
 
 ## Deploying Kubernetes and Cilium with Terraform on Azure
 
