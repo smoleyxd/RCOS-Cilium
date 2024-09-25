@@ -11,6 +11,7 @@ terraform {
     helm = {
       source  = "hashicorp/helm"
       version = "~> 2.14.0"
+      
     }
   }
 
@@ -22,5 +23,6 @@ provider "azurerm" {
   client_secret   = var.CLIENT_SECRET
   subscription_id = var.SUBSCRIPTION_ID
   tenant_id       = var.TENANT_ID
+  skip_provider_registration = "true" 
   features {}
 }
