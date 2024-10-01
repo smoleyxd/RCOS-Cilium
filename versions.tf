@@ -36,8 +36,3 @@ provider "azurerm" {
   tenant_id       = var.TENANT_ID
   features {}
 }
-
-provider "grafana" {
-  url  = azurerm_dashboard_grafana.graf.endpoint
-  auth = var.GRAFANA_API_KEY
-}

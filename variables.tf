@@ -25,7 +25,3 @@ variable "RESOURCE_GROUP_LOCATION" {
   description = "Location for the RCOS-Cilium resource group"
 }
 
-variable "GRAFANA_API_KEY" {
-  type = string
-  description = "API key for loki/grafana"
-}

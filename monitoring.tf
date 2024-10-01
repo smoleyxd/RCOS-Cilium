@@ -70,19 +70,3 @@ resource "azurerm_monitor_data_collection_rule_association" "dcra" {
   ]
 }
 
-# resource "kubernetes_namespace" "logging" {
-#   metadata {
-#     name = "logging"
-#   }
-# }
-
-resource "grafana_data_source" "loki" {
-  name       = "Loki"
-  type       = "loki"
-  url        = "http://loki.logging.svc.cluster.local:3100"
-  access_mode = "proxy"
-
-  depends_on = [
-    azurerm_dashboard_grafana.graf
-  ]
-}
