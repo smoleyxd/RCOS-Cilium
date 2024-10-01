@@ -25,3 +25,20 @@ variable "RESOURCE_GROUP_LOCATION" {
   description = "Location for the RCOS-Cilium resource group"
 }
 
+variable "GRAFANA_API_KEY" {
+  type = string
+  description = "API key for loki/grafana"
+}
+variable "GITHUB_REPOSITORY" {
+  type        = string
+  description = "github repository of the rcos-cilium github repository"
+}
+variable "GITHUB_ORG" {
+  type        = string
+  description = "github organization of the rcos-cilium github repository"
+}
+variable "GITHUB_TOKEN" {
+  type        = string
+  default     = ""
+  description = "github token of the rcos-cilium github repository"
+}
