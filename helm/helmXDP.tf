@@ -1,4 +1,4 @@
-# helmIPv6.tf
+# helmXDP.tf
 
 provider "helm" {
   kubernetes {
@@ -20,29 +20,25 @@ resource "helm_release" "cilium" {
     name  = "k8sServiceHost"
     value = azurerm_kubernetes_cluster.default.kube_config[0].host
   }
-  
+
   set {
-    name  = "routingMode"
+    name = "routingMode"
     value = "native"
   }
-
-  set {
-    name  = "bpf.masquerade"
-    value = "true"
-  }
   
-  set {
-    name  = "ipv6.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "enableIPv6BIGTCP"
-    value = "true"
-  }
-
   set {
     name  = "kubeProxyReplacement"
     value = "true"
   }
+
+  set {
+    name = "loadBalancer.acceleration"
+    value = "native"
+  }
+
+  set {
+    name = "loadBalancer.mode"
+    value = "hybrid"
+  }
+
 }

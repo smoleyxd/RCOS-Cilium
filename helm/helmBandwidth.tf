@@ -1,4 +1,4 @@
-# helm.tf
+# helmBandwidth.tf
 
 provider "helm" {
   kubernetes {
@@ -24,7 +24,7 @@ resource "helm_release" "cilium" {
   
   set {
     name  = "kubeProxyReplacement"
-    value = "strict"
+    value = "true"
   }
 
   set {

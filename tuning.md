@@ -10,7 +10,6 @@ We will only be modifiying:
 BIG TCP
 Bypassing Iptables Tracking
 MTU
-Bandwidth congestion
 BBR Congestion Control for Pods
 XDP Acceleration
 eBPF Map Sizing

@@ -1,4 +1,4 @@
-# helmIPv4.tf
+# helmIPtablesBypass.tf
 
 provider "helm" {
   kubernetes {
@@ -22,25 +22,10 @@ resource "helm_release" "cilium" {
   }
   
   set {
-    name  = "routingMode"
-    value = "native"
-  }
-
-  set {
-    name  = "bpf.masquerade"
+    name = "installNoConntrackIptablesRules"
     value = "true"
   }
   
-  set {
-    name  = "ipv4.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "enableIPv4BIGTCP"
-    value = "true"
-  }
-
   set {
     name  = "kubeProxyReplacement"
     value = "true"
