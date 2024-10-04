@@ -7,6 +7,7 @@
 *.tfplan
 .terraformrc
 terraform.rc
+.terraform.lock.hcl
 
 # Ignore override files used for local configuration
 override.tf
