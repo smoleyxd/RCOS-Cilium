@@ -8,32 +8,55 @@ See "SCRIPT" for the script
 See https://docs.cilium.io/en/stable/operations/performance/tuning/ for the tuning parameters to change.
 We will only be modifiying:
 BIG TCP
-Bypassing Iptables Tracking
 MTU
 BBR Congestion Control for Pods
 XDP Acceleration
 eBPF Map Sizing
 Hubble Obserbability
-Bandwith manager
+Bandwith Manager
 Netkit Device Mode
+Bypassing Iptables Tracking
 
 We will be using "Kernel" for all of our testing
 
 # Expected Results
-BIG TCP: A enlarged TCP packet utilized to reduce transmission overhead of TCP packets.
-Here we expect to see improved throughput and latency, while CPU utilization increase. 
+BIG TCP
+Improved throughput and latency
+Increased CPU utilization (more CPU strain) 
 
 MTU
-Increases throughput
-Increased Jitter and Data corruption/ Packet Dropped
+Increased throughput
+Increased Jitter and Data corruption / Packets Dropped
+Increased CPU utilization
 
-Bandwidth Congestion
 BBR Congestion Control for Pods
+Increased bandwidth 
+Improved latency
+Increased CPU utilization
+
 XDP Acceleration
+Better latency and decrease in network jitter
+
 eBPF Map Sizing
+Better scaliabiklity
+Increased Memory cost
+
 Hubble Obserbability
-Bandwith manager
+Increased network performance
+Decreased CPU strain
+
+Bandwith Manager
+Improved latency and throughput
+Increased CPU strain
+
 Netkit Device Mode
+Significant latency reductions
+Improved throughput
+
+Bypassing Iptables Tracking
+Improvements in latency and throughput
+Decrease in network jitter
+
 
 # Process
 Using Golang, a script will run our Cilium infrastructure for varying intervals of times. This script will be ran for each tuning parameters and allows us to mimic usage of contianerized applications for short-term and long-term capabilities. Additionally, through the use of Prometheus and Grafana we can gather and visualize the network and CPU perfomance impact each tuning parameters has. We will then automate this testing process using github actions to test on a daily/weekly schedule. 
