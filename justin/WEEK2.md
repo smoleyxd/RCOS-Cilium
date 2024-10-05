@@ -1,0 +1,1 @@
+This week, I watched a Kubernetes video and followed the startup markdown to download all the neccessary packages. In the Kubernetes video, I learned how to use external ports given by MongoDB's Kubernetes port to connect to Kubernetes through yaml files. I also learned the components, such as internal and external services, secrets and pods.
