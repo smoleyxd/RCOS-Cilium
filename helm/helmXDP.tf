@@ -18,7 +18,7 @@ resource "helm_release" "cilium" {
 
   set {
     name  = "k8sServiceHost"
-    value = azurerm_kubernetes_cluster.default.kube_config[0].host
+    value = local.k8s_service_host
   }
 
   set {
@@ -41,4 +41,13 @@ resource "helm_release" "cilium" {
     value = "hybrid"
   }
 
+  set {
+    name  = "prometheus.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "k8sServicePort"
+    value = "443"
+  }
 }
