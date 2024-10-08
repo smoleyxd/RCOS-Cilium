@@ -1,12 +1,12 @@
 name: "Ansible Deployment"
 
 on:
-  push:
-    branches: 
-      - azure-migration
-  pull_request:
-    branches:
-      - azure-migration
+  # push:
+  #   branches: 
+  #     - azure-migration
+  # pull_request:
+  #   branches:
+  #     - azure-migration
   workflow_dispatch:
 
 jobs:
