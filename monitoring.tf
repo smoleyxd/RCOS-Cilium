@@ -1,4 +1,3 @@
-
 resource "azurerm_monitor_workspace" "prom" {
   name                = "prom-test"
   resource_group_name = data.azurerm_resource_group.rg.name
