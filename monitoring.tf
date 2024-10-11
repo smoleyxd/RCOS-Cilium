@@ -6,7 +6,6 @@ resource "azurerm_monitor_workspace" "prom" {
 resource "azurerm_dashboard_grafana" "graf" {
   name                              = "graf-test1"
   resource_group_name               = data.azurerm_resource_group.rg.name
-  grafana_major_version             = "9"
   location                          = data.azurerm_resource_group.rg.location
   api_key_enabled                   = true
   deterministic_outbound_ip_enabled = false
