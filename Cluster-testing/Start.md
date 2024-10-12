@@ -42,11 +42,23 @@ helm install cilium cilium/cilium --version 1.12.0 --namespace kube-system <br>
     c. Verify Cilium installation: <br>
     - Type "kubectl get pods -n kube-system" into the terminal 
 
-    <br>
-    ![Docker:](./Testing/Cilium-start.png) 
+    
+    ![Docker:](./Testing/Cilium.png) 
     <br>
 
-    d.
+Run Docker ps:
+<br>
+![Docker:](./Testing/Docker.png) 
+<br>
+
+Metrics:
+
+ 1. **Network Performance**
+   - **Throughput and Latency**: Measure the raw data transfer speeds and the delay between packet transmissions across the cluster nodes.
+
+   - **Packet Loss and Jitter**: Test for packet loss and variation in latency during heavy loads or under specific traffic patterns.
+
+2. 
 
 
 
