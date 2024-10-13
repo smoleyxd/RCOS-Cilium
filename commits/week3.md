@@ -115,7 +115,7 @@ spec:
   ingress:
   - fromEndpoints:
     - matchLabels:
-        org: alliace
+        org: alliance
     toPorts:
     - ports:
       - port: "80"
