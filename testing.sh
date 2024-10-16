@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# To run the following script use the following command:
+# bash testing.sh $Tuning Parameter$
+
+# Predefined array of tuning paramters
 tuningparameters=(
     "cilium_base"
     "cilium_bandwidth"
@@ -28,7 +32,7 @@ else
             terraform init
 
             printf "Plan and Apply the Construction of Infrastructure\n"
-            # terraform plan -target="helm_release.$1" -target="azurerm_monitor_alert_prometheus_rule_group.node_recording_rules_rule_group" 
+            terraform apply -target="helm_release.$1" -target="azurerm_monitor_alert_prometheus_rule_group.node_recording_rules_rule_group" -target="azurerm_virtual_network.vnet" -target="azurerm_subnet.subnet" -target="azurerm_subnet.podsubnet" -target="azurerm_kubernetes_cluster.default" -target="azurerm_monitor_workspace.prom" -target="azurerm_dashboard_grafana.graf" -target="azurerm_role_assignment.grafana" -target="azurerm_monitor_data_collection_endpoint.dce" -target="azurerm_monitor_data_collection_rule.dcr" -target="azurerm_monitor_data_collection_rule_association.dcra"
             break
         fi
     done
