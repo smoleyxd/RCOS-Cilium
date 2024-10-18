@@ -23,6 +23,7 @@ Other installions:
 9. Additional Details about the cluster: `kubectl cluster-info`
 
 *Installation for Windows*
+
 Terraform:
 1. Click link and find install packages
 2. Download 'Windows AMD64'
