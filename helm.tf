@@ -12,8 +12,8 @@ locals {
   k8s_service_host = regex("https?://([^:]+)", azurerm_kubernetes_cluster.default.kube_config[0].host)[0]
 }
 
-resource "helm_release" "cilium_base" {
-  name       = "cilium_base"
+resource "helm_release" "cilium-base" {
+  name       = "cilium-base"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -40,8 +40,8 @@ resource "helm_release" "cilium_base" {
   }
 }
 
-resource "helm_release" "cilium_bandwidth" {
-  name       = "cilium_bandwidth"
+resource "helm_release" "cilium-bandwidth" {
+  name       = "cilium-bandwidth"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -79,8 +79,8 @@ resource "helm_release" "cilium_bandwidth" {
   }
 }
 
-resource "helm_release" "cilium_bbr_congestion" {
-  name       = "cilium_bbr_congestion"
+resource "helm_release" "cilium-bbr-congestion" {
+  name       = "cilium-bbr-congestion"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -118,8 +118,8 @@ resource "helm_release" "cilium_bbr_congestion" {
   }
 }
 
-resource "helm_release" "cilium_bigtcp" {
-  name       = "cilium_bigtcp"
+resource "helm_release" "cilium-bigtcp" {
+  name       = "cilium-bigtcp"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -175,8 +175,8 @@ resource "helm_release" "cilium_bigtcp" {
   }
 }
 
-resource "helm_release" "cilium_hubble_off" {
-  name       = "cilium_hubble_off"
+resource "helm_release" "cilium-hubble-off" {
+  name       = "cilium-hubble-off"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -208,8 +208,8 @@ resource "helm_release" "cilium_hubble_off" {
   }
 }
 
-resource "helm_release" "cilium_iptables_bypass" {
-  name       = "cilium_iptables_bypass"
+resource "helm_release" "cilium-iptables-bypass" {
+  name       = "cilium-iptables-bypass"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -242,8 +242,8 @@ resource "helm_release" "cilium_iptables_bypass" {
 }
 
 
-resource "helm_release" "cilium_netkit" {
-  name       = "cilium_netkit"
+resource "helm_release" "cilium-netkit" {
+  name       = "cilium-netkit"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
@@ -286,8 +286,8 @@ resource "helm_release" "cilium_netkit" {
 }
 
 
-resource "helm_release" "cilium_xdp" {
-  name       = "cilium_xdp"
+resource "helm_release" "cilium-xdp" {
+  name       = "cilium-xdp"
   repository = "https://helm.cilium.io/"
   chart      = "cilium"
   version    = "1.16.0" # specify the version you want to use
