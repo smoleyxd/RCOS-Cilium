@@ -1,0 +1,8 @@
+[
+    {
+      "directory": "/home/Ben/RPI/RCOS/RCOS-Cilium/build",
+      "command": "/usr/bin/cc  -I\"/usr/lib/modules/\\$$\" -I\"/home/Ben/RPI/RCOS/RCOS-Cilium/(\" -I/home/Ben/RPI/RCOS/RCOS-Cilium/uname -I/home/Ben/RPI/RCOS/RCOS-Cilium/-r -I\"/home/Ben/RPI/RCOS/RCOS-Cilium/)\" -I/build/arch/x86/include/generated/uapi  -o CMakeFiles/abnormal_traffic.dir/ebpf-programs/c/abnormal_traffic.c.o -c /home/Ben/RPI/RCOS/RCOS-Cilium/ebpf-programs/c/abnormal_traffic.c",
+      "file": "/home/Ben/RPI/RCOS/RCOS-Cilium/ebpf-programs/c/abnormal_traffic.c",
+      "output": "CMakeFiles/abnormal_traffic.dir/ebpf-programs/c/abnormal_traffic.c.o"
+    }
+    ]

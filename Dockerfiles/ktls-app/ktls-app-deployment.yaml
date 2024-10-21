@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ktls-app
+  labels:
+    app: ktls-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ktls-app
+  template:
+    metadata:
+      labels:
+        app: ktls-app
+    spec:
+      containers:
+        - name: ktls-app
+          image: ktls-app:latest
+          env:
+            - name: USE_KTLS
+              value: "true"
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - name: tls-cert
+              mountPath: /app/cert.pem
+              subPath: cert.pem
+            - name: tls-key
+              mountPath: /app/key.pem
+              subPath: key.pem
+      volumes:
+        - name: tls-cert
+          secret:
+            secretName: ktls-cert
+            items:
+              - key: cert.pem
+                path: cert.pem
+        - name: tls-key
+          secret:
+            secretName: ktls-cert
+            items:
+              - key: key.pem
+                path: key.pem
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ktls-app
+spec:
+  selector:
+    app: ktls-app
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
