@@ -21,7 +21,7 @@ resource "helm_release" "cilium-base" {
 
   set {
     name  = "kubeProxyReplacement"
-    value = "strict"
+    value = "true"
   }
 
   set {

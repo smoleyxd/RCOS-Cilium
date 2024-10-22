@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-pod-simulation
+spec:
+  containers:
+  - name: cpu-stress-container
+    image: polinux/stress
+    args: ["--cpu", "8", "--timeout", "300s"]
+    resources:
+      limits:
+        cpu: "4"
+      requests:
+        cpu: "2"
