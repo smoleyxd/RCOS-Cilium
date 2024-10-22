@@ -1,0 +1,1 @@
+This week, I toyed with terraform and its init, plan and apply commands. I explored the what changes were to be applied by understanding the output of terraform plan. I also researched deployment of MongoDB in a production state so I can prepare to do so.
