@@ -19,6 +19,7 @@ terraform {
     helm = {
       source  = "hashicorp/helm"
       version = "~> 2.14.0"
+      
     }
     flux = {
       source  = "fluxcd/flux"
@@ -50,10 +51,6 @@ provider "azurerm" {
   client_secret   = var.CLIENT_SECRET
   subscription_id = var.SUBSCRIPTION_ID
   tenant_id       = var.TENANT_ID
+  skip_provider_registration = "true" 
   features {}
-}
-
-provider "grafana" {
-  url  = azurerm_dashboard_grafana.graf.endpoint
-  auth = var.GRAFANA_API_KEY
 }
